@@ -5,6 +5,8 @@
 import torch
 import torch.nn as nn
 
+import json
+
 
 class TaggerModel(nn.Module):
     '''LSTM-based model for predicting POS tags'''
@@ -15,6 +17,7 @@ class TaggerModel(nn.Module):
         char_embSize: The number of features for each letter \n
         rnnSize: The number of outputs of one of the LSTMs \n
         dropoutRate: Likelihood of bits randomly being set to 0 to prevent overfitting'''
+        self.args = locals()
         super(TaggerModel,self).__init__()
         self.char_embedding = nn.Embedding(numChars+1,char_embSize)
         self.char_forwardLSTM = nn.LSTM(input_size=char_embSize,hidden_size=char_rnn_size,batch_first=True)
@@ -47,6 +50,17 @@ class TaggerModel(nn.Module):
         word_lstmout = self.dropout(word_lstmout)#
         tag_scores = self.linear(word_lstmout)
         return tag_scores
+
+    def save_args(self):
+        d = dict(self.args)
+        d.pop('self')
+        d.pop('__class__')
+        json.dump(d, open("model.args", "w"), ensure_ascii=False)
+    
+    @classmethod
+    def from_argfile(cls):
+        kwargs = json.load(open("model.args"))
+        return cls(**kwargs)
 #END CLASS TaggerModel
 
 def run_test():

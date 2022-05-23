@@ -112,20 +112,14 @@ class Data:
 
     def sentences(self,filename:str):
         '''Reads sentences from file, yields wordlist for each sentence'''
-        # for line in open(filename,"r",encoding="utf-8"):
-        #     line = line.split("\t")
-        #     sent=[]
-        #     if line[0]: #fist column has test words
-        #         sent.append(line)
-        #     else:#if line is empty:
-        #         yield sent
-        #         sent = []
         with open(filename, encoding="utf-8") as file:
             sent = []
             for line in file:
                 line = line.rstrip().split("\t")
                 if line[0]: #fist column has test words
-                    sent.append(line)
+                    # sent.appent(line)
+                    for word in line:
+                        sent.append(word)
                 else:#if line is empty:
                     yield sent
                     sent = []

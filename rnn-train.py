@@ -95,8 +95,11 @@ def main():
         #if new best accuracy reached, saves current model in paramfile.rnn:
         current_accuracy = calculate_accuracy(data,model)
         if current_accuracy >= bestever_accuracy:
-            torch.save(model,args.paramfile+".rnn")
+            torch.save(model.state_dict(),args.paramfile+".pth")
+            # torch.save(model, args.paramfile+".rnn",_use_new_zipfile_serialization=False)
+            model.save_args()
             bestever_accuracy = current_accuracy
+
     #to be redirected in bash using "> outputfile"
     print("Best accuracy: ",str(bestever_accuracy)) 
     print("Params:")
