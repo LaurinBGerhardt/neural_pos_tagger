@@ -18,7 +18,7 @@ Afterwards one can annotate text by doing
 ./rnn_annotate.py parameterfile testfile > annotatedfile
 ```
 
-All of the train, dev and test files need to look like this:
+All of the train, dev and test files need to look like this (token and tag must be tab-seperated):
 
 ```
 This   DET
