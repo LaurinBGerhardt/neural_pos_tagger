@@ -29,7 +29,7 @@ sentence   N
 
 This   DET
 is   V
-one   N
+one   Num
 as   COMP
 well   ADV
 !   PUNCT
