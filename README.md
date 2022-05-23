@@ -3,7 +3,7 @@ A neural POS tagger based on nested LSTMs
 
 First, two LSTMs tage word prefixes and suffixes as their respective inputs, creating a context-aware vector representation for each position. 
 The tensors of the prefixes and suffixes are then concatenated and treated as word embeddings. 
-Those are then fed to a sentence-level biLSTM. A linear model then takes the biLSTM's output and predicts one of the tags which were present in the training set, or the unknown tag. 
+Those are then fed to a sentence-level biLSTM. A linear model then takes the biLSTM's output and predicts one of the tags which were present in the training set, or the unknown tag, for each position in the output (corresponding to a token in the sentence).
 
 To start training, and to choose the size of the model, do 
 
