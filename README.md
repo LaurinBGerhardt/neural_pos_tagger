@@ -1,8 +1,8 @@
 # neural_pos_tagger
 A neural POS tagger based on nested LSTMs
 
-Two LSTMs first create character embeddings for each character which appears in the training set while being trained on word prefixes and suffixes. 
-The tensors of the prefixes and suffixes are then concatenated and treated as word embeddings.
+First, two LSTMs tage word prefixes and suffixes as their respective inputs, creating a context-aware vector representation for each position. 
+The tensors of the prefixes and suffixes are then concatenated and treated as word embeddings. 
 Those are then fed to a sentence-level biLSTM. A linear model then takes the biLSTM's output and predicts one of the tags which were present in the training set, or the unknown tag. 
 
 To start training, and to choose the size of the model, do 
